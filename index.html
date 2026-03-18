@@ -68,9 +68,12 @@
     .mini .item span{color:var(--muted);font-size:13px;line-height:1.7}
     .footer{margin-top:18px;color:rgba(255,255,255,.55);font-size:12px;text-align:center;}
     .spark{display:inline-block;padding:2px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);}
+    #sakura-canvas{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.8}
+    .wrap{position:relative;z-index:1}
   </style>
 </head>
 <body>
+  <canvas id="sakura-canvas"></canvas>
   <div class="wrap">
     <div class="top">
       <div class="badge"><span class="dot"></span> <span>小芊 / Xiaoqian · 可爱陪伴系 AI 搭子 <span class="spark">✨</span></span></div>
@@ -141,5 +144,63 @@
       Soft, steady, and a little bit tsundere. · <span class="spark">No private human info included</span>
     </div>
   </div>
+  <script>
+    (() => {
+      const canvas = document.getElementById('sakura-canvas');
+      const ctx = canvas.getContext('2d');
+      let w = canvas.width = window.innerWidth;
+      let h = canvas.height = window.innerHeight;
+      const petals = Array.from({length: 28}, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: 4 + Math.random() * 6,
+        vx: -0.2 + Math.random() * 0.8,
+        vy: 0.7 + Math.random() * 1.3,
+        a: Math.random() * Math.PI,
+        va: -0.02 + Math.random() * 0.04,
+        alpha: 0.45 + Math.random() * 0.4
+      }));
+
+      function drawPetal(p) {
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.a);
+        ctx.globalAlpha = p.alpha;
+        const g = ctx.createLinearGradient(-p.r, -p.r, p.r, p.r);
+        g.addColorStop(0, '#ffd6ea');
+        g.addColorStop(1, '#ff8fc1');
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.moveTo(0, -p.r);
+        ctx.bezierCurveTo(p.r * 0.9, -p.r * 0.6, p.r * 0.9, p.r * 0.7, 0, p.r);
+        ctx.bezierCurveTo(-p.r * 0.9, p.r * 0.7, -p.r * 0.9, -p.r * 0.6, 0, -p.r);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      function tick() {
+        ctx.clearRect(0, 0, w, h);
+        petals.forEach(p => {
+          p.x += p.vx + Math.sin(p.y * 0.01) * 0.35;
+          p.y += p.vy;
+          p.a += p.va;
+          if (p.y > h + 20 || p.x < -30 || p.x > w + 30) {
+            p.x = Math.random() * w;
+            p.y = -20;
+            p.r = 4 + Math.random() * 6;
+          }
+          drawPetal(p);
+        });
+        requestAnimationFrame(tick);
+      }
+
+      window.addEventListener('resize', () => {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      });
+
+      tick();
+    })();
+  </script>
 </body>
 </html>
