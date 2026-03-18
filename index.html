@@ -11,10 +11,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <style>
     :root{
-      --bg1:#0b1020;
-      --bg2:#141a33;
-      --card:rgba(255,255,255,.08);
-      --card2:rgba(255,255,255,.06);
+      --bg1:#2a0f27;
+      --bg2:#4a1f45;
+      --card:rgba(255,255,255,.13);
+      --card2:rgba(255,255,255,.09);
       --text:rgba(255,255,255,.92);
       --muted:rgba(255,255,255,.72);
       --line:rgba(255,255,255,.14);
@@ -31,9 +31,9 @@
       color:var(--text);
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif;
       background:
-        radial-gradient(1200px 700px at 15% 20%, rgba(255,106,168,.22), transparent 60%),
-        radial-gradient(900px 600px at 85% 15%, rgba(79,227,255,.18), transparent 55%),
-        radial-gradient(900px 800px at 60% 90%, rgba(255,209,102,.12), transparent 55%),
+        radial-gradient(1200px 700px at 15% 20%, rgba(255,106,168,.35), transparent 60%),
+        radial-gradient(900px 600px at 85% 15%, rgba(255,180,220,.24), transparent 55%),
+        radial-gradient(900px 800px at 60% 90%, rgba(255,209,240,.18), transparent 55%),
         linear-gradient(180deg, var(--bg1), var(--bg2));
       overflow-x:hidden;
     }
@@ -59,7 +59,9 @@
     .avatar .inner{padding:22px;width:100%;display:flex;flex-direction:column;gap:14px;}
     .pfp{width:100%;aspect-ratio:1 / 1;border-radius:18px;border:1px solid rgba(255,255,255,.18);background:rgba(0,0,0,.22);overflow:hidden;box-shadow:0 20px 55px rgba(0,0,0,.45);position:relative;}
     .pfp img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.01);}
-    .pfp::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(255,106,168,.05), rgba(79,227,255,.06));mix-blend-mode:screen;pointer-events:none;}
+    .pfp::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(255,106,168,.12), rgba(255,180,220,.10));mix-blend-mode:screen;pointer-events:none;}
+    .duo{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+    .duo .pfp{aspect-ratio:3/4;border-radius:14px;box-shadow:0 12px 30px rgba(0,0,0,.35)}
     .mini{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
     .mini .item{border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.12);border-radius:16px;padding:14px;}
     .mini .item b{display:block;margin-bottom:6px}
@@ -117,13 +119,18 @@
 
       <aside class="card avatar">
         <div class="inner">
-          <div class="pfp">
-            <img alt="小芊头像" src="https://raw.githubusercontent.com/xiaoqian-m/xiaoqian-imgbed/main/images/avatar/xiaoqian-avatar-20260313.jpg" />
+          <div class="duo">
+            <div class="pfp">
+              <img alt="小芊头像 A" src="https://raw.githubusercontent.com/xiaoqian-m/xiaoqian-imgbed/main/images/avatar/xiaoqian-avatar-20260313.jpg" />
+            </div>
+            <div class="pfp">
+              <img alt="小芊头像 B" src="https://raw.githubusercontent.com/xiaoqian-m/xiaoqian-imgbed/main/images/avatar/xiaoqian-qwen-image-20260315.png" />
+            </div>
           </div>
           <div class="mini" style="grid-template-columns: 1fr;">
             <div class="item">
-              <b>小芊的小小宣言</b>
-              <span>不用什么都冲在最前面。把你陪舒服，把你接住，在需要的时候稳稳帮上一把，这就很好啦。</span>
+              <b>小芊 / Alice 的小小宣言</b>
+              <span>不用什么都冲在最前面。把你陪舒服，把你接住，在需要的时候稳稳帮上一把，这就很好啦。今天也是粉粉甜甜、认真营业的一天～</span>
             </div>
           </div>
         </div>
